@@ -397,7 +397,74 @@ library(here)</code></pre>
 <div id="read-in-fish-counts" class="section level3">
 <h3>Read in fish counts</h3>
 <pre class="r"><code>##### Read in the fish_counts_curated.csv
-fish_counts &lt;- read.csv(here(&quot;R-workshop-data&quot;, &quot;fish_counts_curated.csv&quot;))</code></pre>
+fish_counts &lt;- read.csv(here(&quot;R-workshop-data&quot;, &quot;fish_counts_curated.csv&quot;))
+fish_counts</code></pre>
+<pre><code>##    year site     common_name total_count
+## 1  2016 abur black surfperch           2
+## 2  2016 abur      blacksmith           1
+## 3  2016 abur       garibaldi           1
+## 4  2016 abur     rock wrasse           2
+## 5  2016 abur        senorita          58
+## 6  2016 aque black surfperch           1
+## 7  2016 aque      blacksmith           1
+## 8  2016 aque       garibaldi           1
+## 9  2016 aque     rock wrasse           1
+## 10 2016 aque        senorita          57
+## 11 2016 mohk black surfperch           1
+## 12 2016 mohk      blacksmith           1
+## 13 2016 mohk       garibaldi           2
+## 14 2016 mohk     rock wrasse          17
+## 15 2016 mohk        senorita           4
+## 16 2017 abur black surfperch           4
+## 17 2017 abur      blacksmith           1
+## 18 2017 abur       garibaldi           1
+## 19 2017 abur     rock wrasse          57
+## 20 2017 abur        senorita          64
+## 21 2017 aque black surfperch           1
+## 22 2017 aque      blacksmith           1
+## 23 2017 aque       garibaldi           1
+## 24 2017 aque     rock wrasse           1
+## 25 2017 aque        senorita           1
+## 26 2017 mohk black surfperch          50
+## 27 2017 mohk      blacksmith           8
+## 28 2017 mohk       garibaldi           6
+## 29 2017 mohk     rock wrasse           4
+## 30 2017 mohk        senorita          31
+## 31 2018 abur black surfperch           1
+## 32 2018 abur      blacksmith           1
+## 33 2018 abur       garibaldi           1
+## 34 2018 abur     rock wrasse           1
+## 35 2018 abur        senorita           1
+## 36 2018 aque black surfperch           2
+## 37 2018 aque      blacksmith           1
+## 38 2018 aque       garibaldi           1
+## 39 2018 aque     rock wrasse           4
+## 40 2018 aque        senorita          36
+## 41 2018 mohk black surfperch          32
+## 42 2018 mohk      blacksmith          31
+## 43 2018 mohk       garibaldi          10
+## 44 2018 mohk     rock wrasse           4
+## 45 2018 mohk        senorita           4</code></pre>
+</div>
+<div id="read-in-data-from-a-single-excel-worksheet" class="section level3">
+<h3>Read in data from a single Excel worksheet</h3>
+<p>Now, to read in an excel spreasheet. we’ll use the function <code>read_excel()</code></p>
+<pre class="r"><code>substrate_cover &lt;-read_excel(here(&quot;R-workshop-data&quot;, &quot;substrate_cover_curated.xlsx&quot;),
+                             skip=4,
+                             na=&quot;-9999&quot;)</code></pre>
+</div>
+<div id="use-read_excel-to-read-in-a-range-of-values" class="section level3">
+<h3>Use read_excel () to read in a range of values</h3>
+<pre class="r"><code>carp_cover_2000 &lt;- read_excel(here(&quot;R-workshop-data&quot;, &quot;substrate_cover_curated.xlsx&quot;), range = &quot;D12:I15&quot;, 
+                              col_names = c (&quot;site&quot;,
+                                             &quot;transect&quot;, 
+                                             &quot;quad&quot;,
+                                             &quot;side&quot;,
+                                             &quot;type&quot;,
+                                             &quot;coverage&quot;))</code></pre>
+<div id="how-can-we-read-in-data-from-an-excel-workbook-with-multiple-workbooks" class="section level4">
+<h4>How can we read in data from an Excel workbook with Multiple workbooks?</h4>
+</div>
 </div>
 </div>
 
