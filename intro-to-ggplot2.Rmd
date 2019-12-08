@@ -1,0 +1,79 @@
+---
+title: "intro-to-ggplot2"
+output: html_document
+---
+
+
+
+## Attach packages
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+```
+
+```{r}
+cap_np <- read_csv(here("R-workshop-data", "ca_np.csv"))
+ci_np <-read_xlsx(here ("R-workshop-data", "ci_np.xlsx"))
+```
+
+## Make a graph
+
+1. Tell R we are using 'ggplot'
+2. Tell R what data we are using and what variables we want to plot
+3. What type of graph we are creating
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line()
+```
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_point()
+```
+1. Create a column graph with this data
+2. Create an area graph with this data
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_col()
+```
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_area()
+```
+### Intro to customizing 'ggplot' graphs
+
+- color=(update point or line colors)
+-fill = (update the fill characteristic of an element)
+- linetype
+-pch = (value)
+-size
+-alpha
+
+```{r}
+ggplot(data=ci_np, aes(x=year, y=visitors)) + geom_line(color="coral", linetype="dashed")
+```
+```{r}
+ggplot(data=ci_np, aes(x=year, y=visitors)) +
+  geom_point(color = "blue",
+             size = 4,
+             alpha = 0.5)
+```
+
+```{r}
+ggplot(data=ci_np, aes(x=year, y=visitors)) +
+  geom_point(color = "coral",
+             size = 3,
+             alpha = 1)
+```
+I have text here and a graph below
+
+```{r, echo=FALSE}
+ggplot(data=ci_np, aes(x=year, y=visitors)) +
+  geom_point(color = "coral",
+             size = 3,
+             alpha = 1)
+```
+
