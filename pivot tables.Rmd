@@ -109,4 +109,34 @@ summarize(count_by_siteyear = n(),
           median_size_mm=mean(size_mm, na.rm = TRUE), 
           sd_size_mm = sd(size_mm, na.rm = TRUE))
 ```
+ # dplyr:count() for counting by group
+ This is a shortcut function
+```{r}
+lobsters %>%
+count(site,year) %>%
+summarize (n=n()) %>%
+ungroup()
+```
+
+```{r}
+head(lobsters)
+
+lobsters %>%
+mutate(size_m = size_mm/1000,
+millenia = 2000,
+observer= "you")
+```
+
+let's select 
+-date
+-site
+-size_m
+
+```{r}
+
+lobsters_selected <- lobsters %>%
+mutate(size_m = size_mm / 1000) %>%
+select(date, site, size_m)
+```
+
  

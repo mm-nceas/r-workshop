@@ -1,0 +1,59 @@
+---
+title: "Filter/joins (like VLOOKUP in Excel)"
+output: html_document
+---
+
+# Attach Packages
+tidyverse, readxl, here
+
+```{r, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(here)
+```
+
+Read in 3 files:
+-invert_counts_curated.xlsx
+-fish_counts_curated.csv
+-kelp_counts_curated.xlsx
+
+```{r}
+invert_counts <- read_excel(here("R-workshop-data", 
+                                 "invert_counts_curated.xlsx"))
+
+fish_counts <- read_csv(here("R-workshop-data", "fish_counts_curated.csv"))
+
+  
+Kelp_count_abur <- read_excel(here("R-workshop-data", "kelp_counts_curated.xlsx"))
+```
+### Filter to match rows based on a character string
+Only keep observations from fish_counts where the common_name variable matches "garibaldi"
+```{r}
+fish_garibaldi <- fish_counts %>%
+  filter(common_name == "garibaldi")
+```
+
+#Use janitor::clean_names () to automatically update all of your column names to lowercase_snake_case
+
+## Filter to keep/exclude observations based on numeric 
+
+```{r}
+fish_over50 <- filter(fish_counts, total_count >= 50)
+```
+
+```{r}
+fish_Mohawk <- fish_counts %>%
+  filter(site=="mohk")
+```
+```{r}
+fish_3sp <- fish_counts %>% 
+  filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
+```
+
+## Filter to return rows that match conditions for MULTIPLE variables (AND statements)
+
+```{r}
+urchin_abur_mohk <- invert_counts %>% 
+  filter(site %in% c("abur","mohk"), common_name == "purple urchin")
+```
+
