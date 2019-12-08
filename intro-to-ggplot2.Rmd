@@ -76,4 +76,61 @@ ggplot(data=ci_np, aes(x=year, y=visitors)) +
              size = 3,
              alpha = 1)
 ```
+## Customize elements based on variable values or outcomes
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) + 
+  geom_point(aes (size = visitors, 
+color = visitors                                                                    ), pch = 17)
+```
+```{r}
+```
+
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) + 
+  geom_line(size = 3, color="red") + 
+  theme_minimal()
+```
+
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) + 
+  geom_line(size = 3, color="red") + 
+  theme_minimal()
+```
+
+
+
+### Combine compatible geoms
+
+Example : Add a point plot on top of a line plot:
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) + 
+  geom_line(color="purple") + geom_point(color= "magenta",
+                                         aes(size=year))
+```
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) + 
+  geom_col(color="purple") + geom_line(color= "magenta",
+                                         aes(size=year))
+```
+### Create a line graph with multipe series
+```{r}
+ggplot(data = cap_np, aes(x = year, y = visitors, color = park_name)) + geom_line()
+```
+### Faceting GG plot graphs
+-Each series (group) gets its own plot panel
+
+```{r}
+ggplot(data = cap_np, aes(x = year, y = visitors, color = park_name)) + geom_line(show.legend = FALSE) +
+  theme_minimal() +
+facet_wrap (~ park_name)
+```
+## Use ggsave to export a plot
+
+```{r}
+ggsave("np_graph.png", dpi = 180, width = 8, height = 7)
+```
 
