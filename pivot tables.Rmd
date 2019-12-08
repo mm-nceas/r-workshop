@@ -31,6 +31,62 @@ ggplot(data = lobsters, aes(x=year)) +
   facet_wrap(~site)
 ```
 ## Our task is how the average size of lobsters has changed over time across sites
+Pivot tables in R are group_by %>% summarize
 
+```{r}
+lobsters %>%
+  group_by(year) %>%
+  summarize(count_by_year = n())
+```
 
+```{r}
+lobsters %>%
+  summarize(count_by_year = n())
+## assign our summary to a new variable
+lobsters_sum <- lobsters %>%
+  summarize(count_by_something = n())
+```
+```{r}
+lobsters %>%
+group_by (site, year) %>%
+summarize(count_by_siteyear = n())
+```
+## group_by multilpe variables
+```{r}
+lobsters %>%
+group_by (site, year) %>%
+summarize(count_by_siteyear = n(), 
+          mean_size_mm=mean(size_mm, na.rm = TRUE))
+```
+```{r}
+siteyear_summary <- lobsters %>%
+group_by (site, year) %>%
+summarize(count_by_siteyear = n(), 
+          mean_size_mm=mean(size_mm, na.rm = TRUE), 
+          sd_size_mm = sd(size_mm, na.rm = TRUE))
+siteyear_summary
+```
+```
+```{r}
+lobsters %>%
+group_by (site, year) %>%
+summarize(count_by_siteyear = n(), 
+          median_size_mm=mean(size_mm, na.rm = TRUE), 
+          sd_size_mm = sd(size_mm, na.rm = TRUE))
+```
 
+```{r}
+lobsters %>%
+group_by (site, year) %>%
+summarize(count_by_siteyear = n(), 
+          median_size_mm=median(size_mm, na.rm = TRUE), 
+          sd_size_mm = sd(size_mm, na.rm = TRUE))
+```
+```{r}
+lobsters %>%
+group_by (site, year) %>%
+summarize(count_by_siteyear = n(), 
+          mean_size_mm=median(size_mm, na.rm = TRUE))
+```
+
+ 
