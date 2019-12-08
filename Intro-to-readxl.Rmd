@@ -81,3 +81,15 @@ write_csv(kelp_golb,"kelp_goleta_july.csv")
 ```
 
 
+```{r}
+Kelp_count_abur <- Kelp_count_abur %>% 
+  mutate(year=as.numeric(year))
+class (Kelp_count_abur$year)
+```
+```{r}
+abur_kelp_join <- fish_2016_2017 %>% 
+  full_join(Kelp_count_abur, by = c("year", "site"))
+```
+
+
+

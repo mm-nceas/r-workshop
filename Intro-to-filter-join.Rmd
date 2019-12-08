@@ -50,10 +50,47 @@ fish_3sp <- fish_counts %>%
   filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
 ```
 
-## Filter to return rows that match conditions for MULTIPLE variables (AND statements)
+## Filter to return rows that match conditions fo
 
 ```{r}
 urchin_abur_mohk <- invert_counts %>% 
   filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
+
+```{r}
+low_gb_rw <- fish_counts %>%
+  filter(common_name %in% c("garibaldi", "rock wrasse"), 
+         total_count<10)
+```
+Use!= (indicates "does NOT match)
+
+```{r}
+fish_no_mohk <- fish_counts %>% 
+  filter(site != "mohk")
+```
+
+An example of filter as part of a piped sequence
+
+```{r}
+senorita_allyears <- fish_counts %>%
+  filter(common_name=="senorita") %>% 
+  group_by(site) %>% 
+  summarize(count_all_years = sum(total_count))
+```
+
+
+
+
+
+### Joining data frames
+
+-'full join' : keeps everything (safe join)
+-'left join' : If we are merging A and B, will only retain observations from B that have matches in A
+
+
+```{r}
+fish_2016_2017 <- fish_counts %>%
+  filter (year ==2016 | year == 2017)
+```
+
 
